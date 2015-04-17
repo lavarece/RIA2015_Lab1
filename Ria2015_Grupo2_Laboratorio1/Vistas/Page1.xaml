@@ -1,0 +1,48 @@
+﻿<navigation:Page 
+           xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+           xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+           xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+           xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation"
+           xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk" x:Class="Ria2015_Grupo2_Laboratorio1.Vistas.Page1"
+           mc:Ignorable="d"
+           d:DesignWidth="640" d:DesignHeight="480"
+           Title="Ria2015-Laboratorio 1">
+    <Grid x:Name="PaginaPrincipal" Background="DodgerBlue" >
+
+        <sdk:TabControl Margin="20 10 20 10">
+            <sdk:TabItem Header="Agregar" >
+                <Grid Background="#FFE5E5E5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="1" Background="White" Margin="50 10 50 10" >
+                        <Image Name="ImageCargar" Source="/Ria2015_Grupo2_Laboratorio1;component/carpeta_de_imagenes.jpg" Margin="20 10 20 10"  Stretch="Fill" MaxHeight="200" />
+                        <Button Content="Cargar imagén" Margin="20 10 20 10" Name="ButtomCargar" Click="ButtomCargar_Click"/>
+                        <TextBlock Text="Título" Margin="20 10 20 0"/>
+                        <TextBox Text="" Margin="20 5 20 10" Name="TextBoxTitulo"/>
+                        <TextBlock Text="Descripción" Margin="20 5 20 0"/>
+                        <TextBox Name="TextBoxDescripcion" Text="" Margin="20 5 20 10" Height="60" />
+                        <Button Content="Agregar" Margin="20 10 20 10" Name="ButtomAgregar" Click="ButtomAgregar_Click"/>
+
+                    </StackPanel>
+                </Grid>
+            </sdk:TabItem>
+            <sdk:TabItem Header="Ver">
+                <Grid Background="#FFE5E5E5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Name="VerImagenes" Background="White" Margin="50 10 50 10" >
+                        <ScrollViewer Name="ScrollVerImagenes" Margin="20" MinHeight="150"/>
+                    </StackPanel>
+                </Grid>
+
+
+
+            </sdk:TabItem>
+     
+        </sdk:TabControl>
+
+    </Grid>
+</navigation:Page>
