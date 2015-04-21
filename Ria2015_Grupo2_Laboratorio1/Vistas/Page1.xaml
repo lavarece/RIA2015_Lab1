@@ -4,27 +4,56 @@
            xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
            xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation"
-           xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk" x:Class="Ria2015_Grupo2_Laboratorio1.Vistas.Page1"
+           xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
+    
+           xmlns:sdk1="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Data"
+
+           xmlns:control="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls"
+    
+           x:Class="Ria2015_Grupo2_Laboratorio1.Vistas.Page1"
            mc:Ignorable="d"
            d:DesignWidth="640" d:DesignHeight="480"
            Title="Ria2015-Laboratorio 1">
-    <Grid x:Name="PaginaPrincipal" Background="DodgerBlue" >
+    <Grid x:Name="PaginaPrincipal" Margin="0,-5,0,5" >
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="DodgerBlue" Offset="0"/>
+                <GradientStop Color="Gray" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
 
-        <sdk:TabControl Margin="20 10 20 10">
+        <sdk:TabControl Margin="20 10 20 10"  >
+            <sdk:TabControl.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="white" Offset="0"/>
+                    <GradientStop Color="Silver" Offset="1"/>
+                </LinearGradientBrush>
+            </sdk:TabControl.Background>
+
             <sdk:TabItem Header="Agregar" >
                 <Grid Background="#FFE5E5E5">
+
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
-                <StackPanel Grid.Column="1" Background="White" Margin="50 10 50 10" >
-                        <Image Name="ImageCargar" Source="/Ria2015_Grupo2_Laboratorio1;component/carpeta_de_imagenes.jpg" Margin="20 10 20 10"  Stretch="Fill" MaxHeight="200" />
-                        <Button Content="Cargar imagén" Margin="20 10 20 10" Name="ButtomCargar" Click="ButtomCargar_Click"/>
+                <StackPanel Grid.Column="1"  >
+                        <StackPanel.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="White" Offset="0"/>
+                                <GradientStop Color="Gray" Offset="1.5"/>
+                            </LinearGradientBrush>
+                        </StackPanel.Background>
+
+
+                        <Image Name="ImageCargar" Source="../img/carpeta_de_imagenes.jpg" Margin="20 10 20 10"  Stretch="Fill" MaxHeight="250" MouseLeftButtonDown="ButtomCargar_Click"/>
+                        <Button Content="Cargar imagen" Margin="20 10 20 10" Name="ButtomCargar" Click="ButtomCargar_Click"/>
                         <TextBlock Text="Título" Margin="20 10 20 0"/>
                         <TextBox Text="" Margin="20 5 20 10" Name="TextBoxTitulo"/>
-                        <TextBlock Text="Descripción" Margin="20 5 20 0"/>
-                        <TextBox Name="TextBoxDescripcion" Text="" Margin="20 5 20 10" Height="60" />
+                        <TextBlock Text="Descripción" Margin="20 5 20 0" />
+                        <TextBox Name="TextBoxDescripcion" Text="" Margin="20 5 20 10" Height="60" TextWrapping="Wrap"  AcceptsReturn="True" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto"/>
                         <Button Content="Agregar" Margin="20 10 20 10" Name="ButtomAgregar" Click="ButtomAgregar_Click"/>
 
+                        
                     </StackPanel>
                 </Grid>
             </sdk:TabItem>
@@ -33,13 +62,25 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
-                    <StackPanel Name="VerImagenes" Background="White" Margin="50 10 50 10" >
-                        <ScrollViewer Name="ScrollVerImagenes" Margin="20" MinHeight="150"/>
+                    <StackPanel Name="VerImagenes" >
+                        <StackPanel.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="White" Offset="0"/>
+                                <GradientStop Color="Gray" Offset="1.5"/>
+                            </LinearGradientBrush>
+                        </StackPanel.Background>
+                        <Grid x:Name="LayoutRoot" Background="White">
+                            <ScrollViewer Height="Auto" Width="Auto">
+                                <Canvas>
+                                    <sdk:DataGrid AutoGenerateColumns="True" Canvas.Left="6" Canvas.Top="198" Height="Auto" Name="ListadeImagenes" Width="Auto" />
+
+                                    <TextBlock Canvas.Left="29" Canvas.Top="25" Height="28" Name="Titulo" Width="120" Text="Título:" />
+                                    <TextBlock Canvas.Left="29" Canvas.Top="54" Height="28" Name="Descripcion" Width="120" Text="Descripción" />
+                                </Canvas>
+                            </ScrollViewer>
+                        </Grid>
                     </StackPanel>
                 </Grid>
-
-
-
             </sdk:TabItem>
      
         </sdk:TabControl>

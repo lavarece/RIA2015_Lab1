@@ -31,6 +31,8 @@
     <ThrowErrorsInValidation>true</ThrowErrorsInValidation>
     <LinkedServerProject>
     </LinkedServerProject>
+    <InBrowserSettingsFile>Properties\InBrowserSettings.xml</InBrowserSettingsFile>
+    <RequireInBrowserElevation>true</RequireInBrowserElevation>
   </PropertyGroup>
   <!-- This property group is only here to support building this project using the 
        MSBuild 3.5 toolset. In order to work correctly with this older toolset, it needs 
@@ -81,12 +83,16 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Class1.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Vistas\Page1.xaml.cs">
       <DependentUpon>Page1.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vistas\Page2.xaml.cs">
+      <DependentUpon>Page2.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -103,10 +109,10 @@
     <None Include="Properties\AppManifest.xml" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="silverlight.png" />
+    <Resource Include="img\silverlight.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="office.jpg" />
+    <Resource Include="img\office.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="Vistas\Page1.xaml">
@@ -115,13 +121,28 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="silverlight.jpg" />
+    <Resource Include="img\silverlight.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="carpeta_de_imagenes.jpg" />
+    <Resource Include="img\carpeta_de_imagenes.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="subir.jpg" />
+    <Resource Include="img\subir.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Vistas\Page2.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\OutOfBrowserSettings.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\InBrowserSettings.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="img\silverlight_1.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

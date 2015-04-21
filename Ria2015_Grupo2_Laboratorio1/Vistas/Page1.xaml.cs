@@ -11,15 +11,21 @@ using System.Windows.Media.Imaging;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using System.Windows.Navigation;
+using System.IO;
 
 namespace Ria2015_Grupo2_Laboratorio1.Vistas
 {
     public partial class Page1 : Page
     {
+
+        List<Imagenes> ListaImagenes = new List<Imagenes>();
+
         public Page1()
         {
             InitializeComponent();
+       
         }
+
 
         // Executes when the user navigates to this page.
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -28,29 +34,50 @@ namespace Ria2015_Grupo2_Laboratorio1.Vistas
 
         private void ButtomAgregar_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Agregar imagén");
-        }
+            string Mensaje = "¿ Esta seguro de querer agregar esta imagen ?"; 
+            MessageBoxResult result = MessageBox.Show( Mensaje, "Confirmar", MessageBoxButton.OKCancel);
 
+            if (result == MessageBoxResult.OK)
+            {
+
+                ListadeImagenes.ItemsSource = null;
+
+                Imagenes objImagen = new Imagenes();
+
+                objImagen.titulo = TextBoxTitulo.Text;
+                objImagen.descripcion = TextBoxDescripcion.Text;
+
+                ListaImagenes.Add(objImagen);
+
+
+                ListadeImagenes.ItemsSource = ListaImagenes;
+
+                Uri uriImage = new Uri("../img/carpeta_de_imagenes.jpg", UriKind.Relative);
+                BitmapImage objBI = new BitmapImage(uriImage);
+                ImageCargar.Source = objBI;
+                TextBoxTitulo.Text = "";
+                TextBoxDescripcion.Text = "";
+            }
+   
+        }
         private void ButtomCargar_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Cargar imagén");
-            OpenFileDialog dialogo = new OpenFileDialog();
+   
+            OpenFileDialog dialog = new OpenFileDialog();
+            dialog.Filter = "Imagenes |*.jpg;*.png";
 
-            dialogo.Multiselect = false;
-            dialogo.Filter = "jpg (*.jpg)|*.jpg";
-            dialogo.FilterIndex = 1;
-            dialogo.InitialDirectory = "C:\\Users\\Marcelo\\Desktop\\fing.tecnoinf.cursos.ria";
-            bool? userClickedOK = dialogo.ShowDialog();
- 
-            if (userClickedOK == true)
+            if (dialog.ShowDialog() == true)
             {
-                System.IO.Stream archivo = dialogo.File.OpenRead();
-                BitmapImage bi = new BitmapImage();
-                bi.SetSource(archivo);
-                ImageCargar.Source = bi;
-                archivo.Close();
+                using (FileStream fs = dialog.File.OpenRead())
+                {
+                    BitmapImage img = new BitmapImage();
+                    img.SetSource(fs);
+                    ImageCargar.Source = img;
+                }
+
+                
             }
-            
+
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {

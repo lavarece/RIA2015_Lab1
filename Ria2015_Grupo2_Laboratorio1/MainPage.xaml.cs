@@ -12,11 +12,15 @@ using System.Windows.Shapes;
 
 namespace Ria2015_Grupo2_Laboratorio1
 {
+    
     public partial class MainPage : UserControl
     {
+
+        
         public MainPage()
         {
             InitializeComponent();
+ 
         }
 
         private void ButtomIniciar_Click(object sender, RoutedEventArgs e)
@@ -24,10 +28,27 @@ namespace Ria2015_Grupo2_Laboratorio1
             
             HyperlinkButton LinkButton = sender as HyperlinkButton;
 
-            LinkButton.Content = "Salir";
-            TextBlockUsuario.Text = "Hola " + TextBoxUsuario.Text;
-            PageMain.Navigate(new Uri(LinkButton.Tag.ToString(), UriKind.Relative));
+            if (TextBlockUsuario.Text == "Usuario")
+            {
+                TextBlockUsuario.Text = TextBoxUsuario.Text;
+                TextBlockUsuario.FontSize = 15;
+                TextBoxUsuario.Visibility = Visibility.Collapsed;
+                LinkButton.Content = "Salir";
+                LinkButton.Tag = "/Vistas/Page1.xaml";
+                
+            }
+            else
+            {
+                LinkButton.Content = "Iniciar";
+                LinkButton.Tag = "/Vistas/Page2.xaml";
+                TextBlockUsuario.FontSize = 10;
+                TextBlockUsuario.Text = "Usuario";
+                TextBoxUsuario.Visibility = Visibility.Visible;
+                TextBoxUsuario.Text = "";
+            }
 
+            PageMain.Navigate(new Uri(LinkButton.Tag.ToString(), UriKind.Relative));
+           
         }
        
     }
